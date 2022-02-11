@@ -14,10 +14,11 @@ import {
   Center,
   Pressable,
 } from "native-base";
-import logo from "./../assets/dummy-logo.png";
+import logo from "./../assets/dummy-logo-blue.png";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import Newsfeed from "./Newsfeed";
-import { View, Image, StyleSheet } from "react-native";
+import Eventfeed from "./Eventfeed";
+import { View, StyleSheet, Image } from "react-native";
 
 export default function AppFooter({ newsPost, eventPost }) {
   const [feed, setFeed] = useState(newsPost);
@@ -26,11 +27,17 @@ export default function AppFooter({ newsPost, eventPost }) {
     <Box flex={1} bg="white" safeAreaTop width="100%" alignSelf="center">
       <Center flex={1}></Center>
       <Box alignItems={"center"}>
-        <Image source={logo} style={styles.tinyLogo} />
-        <Heading>Hello</Heading>
+        <Image
+          style={{ width: 180, resizeMode: "contain" }}
+          source={require("./../assets/dummy-logo-blue.png")}
+          alt="intra stellar logo"
+        />
+        {/* <Heading mb={2}>Intrastellar</Heading> */}
       </Box>
-      <Newsfeed newsPost={feed} />
-      <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
+      {feed === newsPost ? <Newsfeed newsPost={newsPost} /> : null}
+
+      {feed === eventPost ? <Eventfeed eventPost={eventPost} /> : null}
+      <HStack bg="#00539a" alignItems="center" safeAreaBottom shadow={6}>
         <Pressable
           opacity={selected === 0 ? 1 : 0.5}
           py="3"
