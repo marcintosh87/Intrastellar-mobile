@@ -1,4 +1,5 @@
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import { NativeBaseProvider, Box } from "native-base";
 
 import React from "react";
 
@@ -16,8 +17,8 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
+    <NativeBaseProvider>
       <Main />
-    </PaperProvider>
+    </NativeBaseProvider>
   );
 }

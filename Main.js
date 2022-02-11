@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import AppHeader from "./sources/AppHeader";
 import axios from "axios";
 import Newsfeed from "./sources/Newsfeed";
-import Constants from "expo-constants";
+
+import AppFooter from "./sources/AppFooter";
+import { Box, Container } from "native-base";
 
 // const { manifest } = Constants;
 
@@ -16,6 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [newsPost, setNewsPost] = useState([]);
+  const [eventPost, setEventPost] = useState([]);
 
   // loading and errors
   //   if (loading) {
@@ -46,10 +49,27 @@ export default function App() {
     }, []);
   }
 
+  const getEventPosts = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/event_posts`);
+      //   console.log(response.data);
+      setEventPost(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (eventPost) {
+    useEffect(() => {
+      getEventPosts();
+    }, []);
+  }
+
   return (
     <View style={styles.container}>
-      <AppHeader />
-      <Newsfeed newsPost={newsPost} />
+      <AppFooter newsPost={newsPost} eventPost={eventPost} />
     </View>
   );
 }

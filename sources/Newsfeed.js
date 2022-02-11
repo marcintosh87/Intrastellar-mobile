@@ -11,7 +11,6 @@ export default function Newsfeed({ newsPost }) {
 
   return (
     <ScrollView>
-      <Headline style={{ textAlign: "center" }}>NewsFeed</Headline>
       {newsPost.map((each) => (
         <Card style={{ margin: 10 }} key={each.id}>
           <Card.Title
