@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import AppHeader from "./sources/AppHeader";
 import axios from "axios";
 import Newsfeed from "./sources/Newsfeed";
-
+import { NativeBaseProvider } from "native-base";
 import AppFooter from "./sources/AppFooter";
 import { Box, Container } from "native-base";
 
@@ -68,9 +68,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <AppFooter newsPost={newsPost} eventPost={eventPost} />
-    </View>
+    <NativeBaseProvider>
+      <View style={styles.container}>
+        <AppFooter newsPost={newsPost} eventPost={eventPost} />
+      </View>
+    </NativeBaseProvider>
   );
 }
 

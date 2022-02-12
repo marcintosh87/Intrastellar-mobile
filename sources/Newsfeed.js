@@ -33,7 +33,9 @@ export default function Newsfeed({ newsPost }) {
           />
           <Card.Actions>
             <Button color="#00539a">Read More</Button>
-            <Button color="#00539a">Clap</Button>
+            <Button color="#00539a" icon="heart-plus">
+              {each.claps}
+            </Button>
           </Card.Actions>
         </Card>
       ))}

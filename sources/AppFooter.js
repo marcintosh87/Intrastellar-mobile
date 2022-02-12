@@ -19,9 +19,11 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import Newsfeed from "./Newsfeed";
 import Eventfeed from "./Eventfeed";
 import { View, StyleSheet, Image } from "react-native";
+import Home from "./Home";
+import UserAccount from "./UserAccount";
 
 export default function AppFooter({ newsPost, eventPost }) {
-  const [feed, setFeed] = useState(newsPost);
+  const [nav, setNav] = useState("HomeScreen");
   const [selected, setSelected] = React.useState(1);
   return (
     <Box flex={1} bg="white" safeAreaTop width="100%" alignSelf="center">
@@ -34,15 +36,19 @@ export default function AppFooter({ newsPost, eventPost }) {
         />
         {/* <Heading mb={2}>Intrastellar</Heading> */}
       </Box>
-      {feed === newsPost ? <Newsfeed newsPost={newsPost} /> : null}
-
-      {feed === eventPost ? <Eventfeed eventPost={eventPost} /> : null}
+      {nav === "HomeScreen" ? <Home /> : null}
+      {nav === "newsPost" ? <Newsfeed newsPost={newsPost} /> : null}
+      {nav === "userAccount" ? <UserAccount /> : null}
+      {nav === "eventPost" ? <Eventfeed eventPost={eventPost} /> : null}
       <HStack bg="#00539a" alignItems="center" safeAreaBottom shadow={6}>
         <Pressable
           opacity={selected === 0 ? 1 : 0.5}
           py="3"
           flex={1}
-          onPress={() => setSelected(0)}
+          onPress={() => {
+            setSelected(0);
+            setNav("HomeScreen");
+          }}
         >
           <Center>
             <Icon
@@ -66,7 +72,7 @@ export default function AppFooter({ newsPost, eventPost }) {
           flex={1}
           onPress={() => {
             setSelected(1);
-            setFeed(newsPost);
+            setNav("newsPost");
           }}
         >
           <Center>
@@ -87,7 +93,7 @@ export default function AppFooter({ newsPost, eventPost }) {
           flex={1}
           onPress={() => {
             setSelected(2);
-            setFeed(eventPost);
+            setNav("eventPost");
           }}
         >
           <Center>
@@ -110,7 +116,10 @@ export default function AppFooter({ newsPost, eventPost }) {
           opacity={selected === 3 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => setSelected(3)}
+          onPress={() => {
+            setSelected(3);
+            setNav("userAccount");
+          }}
         >
           <Center>
             <Icon

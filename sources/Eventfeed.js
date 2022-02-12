@@ -35,8 +35,11 @@ export default function Newsfeed({ eventPost }) {
           />
           <Card.Actions>
             <Button color="#00539a">Read More</Button>
-            <Button color="#00539a">Clap</Button>
+            <Button color="#00539a" icon="heart-plus">
+              {each.claps}
+            </Button>
             <Button
+              icon="calendar-plus"
               onPress={() =>
                 Linking.openURL(
                   `https://outlook.live.com/owa/?path=/calendar/view/Month&rru=addevent&startdt=${each.date_of_event}${each.time}&enddt=20200214T000000Z&subject=${each.title}+Event&location=${each.event_location}&body=${each.content}`
