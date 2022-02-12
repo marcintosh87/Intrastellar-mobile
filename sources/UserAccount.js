@@ -11,7 +11,7 @@ import React from "react";
 import { useState } from "react";
 import EmpDir from "./EmpDir";
 
-export default function UserAccount() {
+export default function UserAccount({ handleLogout }) {
   const [nav, setNav] = useState("EmpDirectory");
   return (
     <>
@@ -50,6 +50,14 @@ export default function UserAccount() {
               }}
             >
               Employee Directory
+            </Menu.Item>
+
+            <Menu.Item
+              onPress={() => {
+                handleLogout();
+              }}
+            >
+              Log Out
             </Menu.Item>
           </Menu>
         </Box>

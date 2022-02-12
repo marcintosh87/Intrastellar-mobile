@@ -14,7 +14,7 @@ import { Box, Container } from "native-base";
 //   .shift()
 //   .concat(`:3000`)}`;
 
-export default function App() {
+export default function App({ currentUser, handleLogout }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [newsPost, setNewsPost] = useState([]);
@@ -70,7 +70,12 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
-        <AppFooter newsPost={newsPost} eventPost={eventPost} />
+        <AppFooter
+          newsPost={newsPost}
+          eventPost={eventPost}
+          currentUser={currentUser}
+          handleLogout={handleLogout}
+        />
       </View>
     </NativeBaseProvider>
   );

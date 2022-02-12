@@ -13,6 +13,7 @@ import {
   HStack,
   Center,
   Pressable,
+  Avatar,
 } from "native-base";
 import logo from "./../assets/dummy-logo-blue.png";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
@@ -22,23 +23,36 @@ import { View, StyleSheet, Image } from "react-native";
 import Home from "./Home";
 import UserAccount from "./UserAccount";
 
-export default function AppFooter({ newsPost, eventPost }) {
+export default function AppFooter({
+  newsPost,
+  eventPost,
+  currentUser,
+  handleLogout,
+}) {
   const [nav, setNav] = useState("HomeScreen");
-  const [selected, setSelected] = React.useState(1);
+  const [selected, setSelected] = React.useState(0);
   return (
     <Box flex={1} bg="white" safeAreaTop width="100%" alignSelf="center">
       <Center flex={1}></Center>
-      <Box alignItems={"center"}>
+      <Box alignItems={"center"} flexDirection="row" justifyContent={"center"}>
         <Image
           style={{ width: 180, resizeMode: "contain" }}
           source={require("./../assets/dummy-logo-blue.png")}
           alt="intra stellar logo"
         />
-        {/* <Heading mb={2}>Intrastellar</Heading> */}
+        {currentUser && (
+          <Avatar
+            source={{
+              uri: `http://localhost:3000${currentUser.profile_image}`,
+            }}
+          />
+        )}
       </Box>
       {nav === "HomeScreen" ? <Home /> : null}
       {nav === "newsPost" ? <Newsfeed newsPost={newsPost} /> : null}
-      {nav === "userAccount" ? <UserAccount /> : null}
+      {nav === "userAccount" ? (
+        <UserAccount handleLogout={handleLogout} />
+      ) : null}
       {nav === "eventPost" ? <Eventfeed eventPost={eventPost} /> : null}
       <HStack bg="#00539a" alignItems="center" safeAreaBottom shadow={6}>
         <Pressable
