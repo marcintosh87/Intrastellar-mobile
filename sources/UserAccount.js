@@ -10,9 +10,10 @@ import {
 import React from "react";
 import { useState } from "react";
 import EmpDir from "./EmpDir";
+import UserProfile from "./UserProfile";
 
 export default function UserAccount({ handleLogout }) {
-  const [nav, setNav] = useState("EmpDirectory");
+  const [nav, setNav] = useState("UserProfile");
   return (
     <>
       <View flex={100}>
@@ -39,10 +40,10 @@ export default function UserAccount({ handleLogout }) {
           >
             <Menu.Item
               onPress={() => {
-                setNav("UserAccount");
+                setNav("UserProfile");
               }}
             >
-              User Account
+              User Profile
             </Menu.Item>
             <Menu.Item
               onPress={() => {
@@ -61,6 +62,7 @@ export default function UserAccount({ handleLogout }) {
             </Menu.Item>
           </Menu>
         </Box>
+        {nav === "UserProfile" ? <UserProfile /> : null}
         {nav === "EmpDirectory" ? <EmpDir /> : null}
       </View>
     </>

@@ -95,7 +95,6 @@ export default function App() {
     setCurrentUser(null);
   };
 
-  console.log(formData);
   return (
     <NativeBaseProvider>
       {/* login form */}

@@ -4,7 +4,8 @@ import { Headline, Text } from "react-native-paper";
 
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
-export default function Newsfeed({ newsPost }) {
+export default function Newsfeed({ newsPost, setNav, setArticle }) {
+  // const [showContent, setShowContent] = useState(false);
   const LeftContent = (props) => (
     <Avatar.Icon
       {...props}
@@ -24,15 +25,28 @@ export default function Newsfeed({ newsPost }) {
           />
           <Card.Content>
             <Title>{each.title}</Title>
-            <Paragraph>{each.content}</Paragraph>
           </Card.Content>
           <Card.Cover
             source={{
               uri: `http://localhost:3000${each.image_post}`,
             }}
           />
+
+          {/* <Card.Content>
+            <Paragraph>{each.content}</Paragraph>
+          </Card.Content> */}
+
           <Card.Actions>
-            <Button color="#00539a">Read More</Button>
+            <Button
+              color="#00539a"
+              onPress={() => {
+                setArticle(each.id);
+                setNav("newsArticle");
+                // showContent ? setShowContent(false) : setShowContent(true);
+              }}
+            >
+              Read More
+            </Button>
             <Button color="#00539a" icon="heart-plus">
               {each.claps}
             </Button>

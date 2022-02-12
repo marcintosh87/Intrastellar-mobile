@@ -22,6 +22,7 @@ import Eventfeed from "./Eventfeed";
 import { View, StyleSheet, Image } from "react-native";
 import Home from "./Home";
 import UserAccount from "./UserAccount";
+import NewsArticle from "./NewsArticle";
 
 export default function AppFooter({
   newsPost,
@@ -31,6 +32,7 @@ export default function AppFooter({
 }) {
   const [nav, setNav] = useState("HomeScreen");
   const [selected, setSelected] = React.useState(0);
+  const [article, setArticle] = useState(null);
   return (
     <Box flex={1} bg="white" safeAreaTop width="100%" alignSelf="center">
       <Center flex={1}></Center>
@@ -49,7 +51,12 @@ export default function AppFooter({
         )}
       </Box>
       {nav === "HomeScreen" ? <Home /> : null}
-      {nav === "newsPost" ? <Newsfeed newsPost={newsPost} /> : null}
+      {nav === "newsPost" ? (
+        <Newsfeed newsPost={newsPost} setNav={setNav} setArticle={setArticle} />
+      ) : null}
+      {nav === "newsArticle" ? (
+        <NewsArticle article={article} currentUser={currentUser} />
+      ) : null}
       {nav === "userAccount" ? (
         <UserAccount handleLogout={handleLogout} />
       ) : null}
