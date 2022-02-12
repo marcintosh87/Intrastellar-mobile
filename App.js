@@ -32,8 +32,8 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formData, setFormData] = useState({
-    email: "mario@company.com",
-    password: "123456",
+    email: "",
+    password: "",
   });
 
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function App() {
     setCurrentUser(null);
   };
 
-  console.log(currentUser);
+  console.log(formData);
   return (
     <NativeBaseProvider>
       {/* login form */}
@@ -113,7 +113,12 @@ export default function App() {
               style={styles.TextInput}
               placeholder="Email."
               placeholderTextColor="#003f5c"
-              onChangeText={(email) => setEmail(email)}
+              onChangeText={(emailData) => {
+                setFormData({
+                  ...formData,
+                  email: emailData.toLocaleLowerCase(),
+                });
+              }}
             />
           </View>
 
@@ -123,7 +128,12 @@ export default function App() {
               placeholder={"Password."}
               placeholderTextColor="#003f5c"
               secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
+              onChangeText={(emailData) => {
+                setFormData({
+                  ...formData,
+                  password: emailData,
+                });
+              }}
             />
           </View>
 
