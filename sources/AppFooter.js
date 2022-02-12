@@ -58,7 +58,7 @@ export default function AppFooter({
         <NewsArticle article={article} currentUser={currentUser} />
       ) : null}
       {nav === "userAccount" ? (
-        <UserAccount handleLogout={handleLogout} />
+        <UserAccount handleLogout={handleLogout} currentUser={currentUser} />
       ) : null}
       {nav === "eventPost" ? <Eventfeed eventPost={eventPost} /> : null}
       <HStack bg="#00539a" alignItems="center" safeAreaBottom shadow={6}>

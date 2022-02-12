@@ -12,7 +12,7 @@ import { useState } from "react";
 import EmpDir from "./EmpDir";
 import UserProfile from "./UserProfile";
 
-export default function UserAccount({ handleLogout }) {
+export default function UserAccount({ handleLogout, currentUser }) {
   const [nav, setNav] = useState("UserProfile");
   return (
     <>
@@ -62,7 +62,9 @@ export default function UserAccount({ handleLogout }) {
             </Menu.Item>
           </Menu>
         </Box>
-        {nav === "UserProfile" ? <UserProfile /> : null}
+        {nav === "UserProfile" ? (
+          <UserProfile currentUser={currentUser} />
+        ) : null}
         {nav === "EmpDirectory" ? <EmpDir /> : null}
       </View>
     </>
