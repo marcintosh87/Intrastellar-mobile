@@ -29,6 +29,8 @@ export default function AppFooter({
   eventPost,
   currentUser,
   handleLogout,
+  setRefresh,
+  refresh,
 }) {
   const [nav, setNav] = useState("HomeScreen");
   const [selected, setSelected] = React.useState(0);
@@ -58,7 +60,12 @@ export default function AppFooter({
         <NewsArticle article={article} currentUser={currentUser} />
       ) : null}
       {nav === "userAccount" ? (
-        <UserAccount handleLogout={handleLogout} currentUser={currentUser} />
+        <UserAccount
+          handleLogout={handleLogout}
+          currentUser={currentUser}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        />
       ) : null}
       {nav === "eventPost" ? <Eventfeed eventPost={eventPost} /> : null}
       <HStack bg="#00539a" alignItems="center" safeAreaBottom shadow={6}>

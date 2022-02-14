@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import Main from "./Main.js";
 import e from "cors";
+import { SSRProvider } from "@react-aria/ssr";
 
 const theme = {
   ...DefaultTheme,
@@ -27,6 +28,7 @@ const theme = {
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   const [errors, setErrors] = useState("");
   const [email, setEmail] = useState("");
@@ -46,7 +48,7 @@ export default function App() {
         });
       }
     });
-  }, []);
+  }, [refresh]);
   // console.log(formData);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -84,7 +86,7 @@ export default function App() {
   //     [e.target.name]: e.target.value,
   //   });
   // }
-  // logou
+  // logout
   const handleLogout = () => {
     fetch("http://localhost:3000/logout", {
       method: "DELETE",
@@ -96,62 +98,74 @@ export default function App() {
   };
 
   return (
-    <NativeBaseProvider>
-      {/* login form */}
+    <SSRProvider>
+      <NativeBaseProvider>
+        <PaperProvider>
+          {/* login form */}
 
-      {!currentUser ? (
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("./assets/dummy-logo-blue.png")}
-          />
+          {!currentUser ? (
+            <View style={styles.container}>
+              <Image
+                style={styles.image}
+                source={require("./assets/dummy-logo-blue.png")}
+              />
 
-          <StatusBar style="auto" />
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Email."
-              placeholderTextColor="#003f5c"
-              onChangeText={(emailData) => {
-                setFormData({
-                  ...formData,
-                  email: emailData.toLocaleLowerCase(),
-                });
-              }}
+              <StatusBar style="auto" />
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.TextInput}
+                  placeholder="Email."
+                  placeholderTextColor="#003f5c"
+                  onChangeText={(emailData) => {
+                    setFormData({
+                      ...formData,
+                      email: emailData.toLocaleLowerCase(),
+                    });
+                  }}
+                />
+              </View>
+
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.TextInput}
+                  placeholder={"Password."}
+                  placeholderTextColor="#003f5c"
+                  secureTextEntry={true}
+                  onChangeText={(emailData) => {
+                    setFormData({
+                      ...formData,
+                      password: emailData,
+                    });
+                  }}
+                />
+              </View>
+
+              <TouchableOpacity>
+                <Text style={styles.forgot_button}>Forgot Password?</Text>
+              </TouchableOpacity>
+
+              {currentUser === null ? (
+                <TouchableOpacity
+                  style={styles.loginBtn}
+                  onPress={handleSubmit}
+                >
+                  <Text style={styles.loginText}>
+                    <Text style={{ color: "white" }}>Log in</Text>
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
+            </View>
+          ) : (
+            <Main
+              currentUser={currentUser}
+              handleLogout={handleLogout}
+              refresh={refresh}
+              setRefresh={setRefresh}
             />
-          </View>
-
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder={"Password."}
-              placeholderTextColor="#003f5c"
-              secureTextEntry={true}
-              onChangeText={(emailData) => {
-                setFormData({
-                  ...formData,
-                  password: emailData,
-                });
-              }}
-            />
-          </View>
-
-          <TouchableOpacity>
-            <Text style={styles.forgot_button}>Forgot Password?</Text>
-          </TouchableOpacity>
-
-          {currentUser === null ? (
-            <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
-              <Text style={styles.loginText}>
-                <Text style={{ color: "white" }}>Log in</Text>
-              </Text>
-            </TouchableOpacity>
-          ) : null}
-        </View>
-      ) : (
-        <Main currentUser={currentUser} handleLogout={handleLogout} />
-      )}
-    </NativeBaseProvider>
+          )}
+        </PaperProvider>
+      </NativeBaseProvider>
+    </SSRProvider>
   );
 }
 

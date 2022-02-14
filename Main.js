@@ -14,7 +14,12 @@ import { Box, Container } from "native-base";
 //   .shift()
 //   .concat(`:3000`)}`;
 
-export default function App({ currentUser, handleLogout }) {
+export default function App({
+  currentUser,
+  handleLogout,
+  refresh,
+  setRefresh,
+}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [newsPost, setNewsPost] = useState([]);
@@ -68,16 +73,16 @@ export default function App({ currentUser, handleLogout }) {
   }
 
   return (
-    <NativeBaseProvider>
-      <View style={styles.container}>
-        <AppFooter
-          newsPost={newsPost}
-          eventPost={eventPost}
-          currentUser={currentUser}
-          handleLogout={handleLogout}
-        />
-      </View>
-    </NativeBaseProvider>
+    <View style={styles.container}>
+      <AppFooter
+        newsPost={newsPost}
+        eventPost={eventPost}
+        currentUser={currentUser}
+        handleLogout={handleLogout}
+        refresh={refresh}
+        setRefresh={setRefresh}
+      />
+    </View>
   );
 }
 

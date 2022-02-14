@@ -1630,21 +1630,7 @@
     "@react-types/radio" "^3.1.2"
     "@react-types/slider" "^3.0.2"
 
-"@react-aria/ssr@^3.0.1":
-  "integrity" "sha512-RxqQKmE8sO7TGdrcSlHTcVzMP450hqowtBSd2bBS9oPlcokVkaGq28c3Rwa8ty5ctw4EBCjXqjP7xdcKMGDzug=="
-  "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.1.0.tgz"
-  "version" "3.1.0"
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-
-"@react-aria/ssr@^3.0.3":
-  "integrity" "sha512-RxqQKmE8sO7TGdrcSlHTcVzMP450hqowtBSd2bBS9oPlcokVkaGq28c3Rwa8ty5ctw4EBCjXqjP7xdcKMGDzug=="
-  "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.1.0.tgz"
-  "version" "3.1.0"
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-
-"@react-aria/ssr@^3.1.0":
+"@react-aria/ssr@^3.0.1", "@react-aria/ssr@^3.0.3", "@react-aria/ssr@^3.1.0":
   "integrity" "sha512-RxqQKmE8sO7TGdrcSlHTcVzMP450hqowtBSd2bBS9oPlcokVkaGq28c3Rwa8ty5ctw4EBCjXqjP7xdcKMGDzug=="
   "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.1.0.tgz"
   "version" "3.1.0"

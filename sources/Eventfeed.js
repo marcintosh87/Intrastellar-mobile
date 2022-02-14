@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, View, Linking } from "react-native";
-import { Headline, Text } from "react-native-paper";
-import * as AddCalendarEvent from "react-native-add-calendar-event";
 
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
-import { Image } from "native-base";
 
 export default function Newsfeed({ eventPost }) {
   const LeftContent = (props) => (
@@ -34,7 +31,7 @@ export default function Newsfeed({ eventPost }) {
             }}
           />
           <Card.Actions>
-            <Button color="#00539a">Read More</Button>
+            {/* <Button color="#00539a">Read More</Button> */}
             <Button color="#00539a" icon="heart-plus">
               {each.claps}
             </Button>
